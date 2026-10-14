@@ -1,0 +1,24 @@
+﻿.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local backups
+*.bak
+*.backup
+*.before_*
+*.preimplementation.*
+
+# Python cache
+__pycache__/

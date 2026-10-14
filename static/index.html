@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HROne | Attendance Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">H</span> HROne</div>
+      <p class="nav-label">WORKSPACE</p>
+      <a class="nav-link active" href="#overview">▦ &nbsp; Overview</a>
+      <a class="nav-link" href="#attendance">◷ &nbsp; Attendance</a>
+      <a class="nav-link" href="#analytics">▥ &nbsp; Analytics</a>
+      <div class="sidebar-bottom">
+        <div class="avatar">HR</div>
+        <div><strong>HR Admin</strong><small>Attendance Manager</small></div>
+      </div>
+    </aside>
+
+    <main class="main" id="overview">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">WORKSPACE / OVERVIEW</span>
+          <h1>Attendance Dashboard</h1>
+          <p class="muted">
+            A clear view of your team's attendance and performance.
+          </p>
+        </div>
+        <button class="refresh-btn" id="refreshBtn">
+          ↻ &nbsp; Refresh data
+        </button>
+      </header>
+
+      <div class="toolbar">
+        <div>
+          <span class="live-dot"></span> API connection
+          <strong id="apiStatus">Connecting…</strong>
+        </div>
+        <label
+          >Analytics month <input id="monthFilter" type="month" value="2026-07"
+        /></label>
+      </div>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Total employees</span><span class="stat-icon purple">♙</span>
+          </div>
+          <h2 id="employeeCount">—</h2>
+          <p>Employees in the directory</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Attendance records</span><span class="stat-icon blue">▤</span>
+          </div>
+          <h2 id="recordCount">—</h2>
+          <p>Records returned by the API</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Present records</span><span class="stat-icon green">✓</span>
+          </div>
+          <h2 id="presentCount">—</h2>
+          <p>Present, work from home or on duty</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top">
+            <span>Late records</span><span class="stat-icon orange">◷</span>
+          </div>
+          <h2 id="lateCount">—</h2>
+          <p>Records with late minutes above zero</p>
+        </article>
+      </section>
+
+      <section class="content-grid" id="analytics">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Department summary</h3>
+              <p>Monthly workforce overview</p>
+            </div>
+            <span class="pill">Analytics</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Department</th>
+                  <th>Headcount</th>
+                  <th>Present days</th>
+                  <th>Late</th>
+                </tr>
+              </thead>
+              <tbody id="departmentRows">
+                <tr>
+                  <td colspan="4" class="empty">Loading departments…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h3>Late arrivals</h3>
+              <p>Employees ranked by late minutes</p>
+            </div>
+          </div>
+          <div id="leaderboard" class="leaderboard">
+            <p class="empty">Loading leaderboard…</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel attendance-panel" id="attendance">
+        <div class="panel-heading attendance-heading">
+          <div>
+            <h3>Attendance records</h3>
+            <p>Recent records from your attendance API</p>
+          </div>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search employee or status…"
+          />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Work hours</th>
+                <th>Late minutes</th>
+              </tr>
+            </thead>
+            <tbody id="attendanceRows">
+              <tr>
+                <td colspan="5" class="empty">Loading attendance…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer" id="tableFooter">
+          Showing records returned by the API
+        </div>
+      </section>
+      <p class="footnote">
+        HROne Attendance & Analytics · Data is loaded from your local FastAPI
+        backend.
+      </p>
+    </main>
+    <div id="toast" role="status"></div>
+  </body>
+</html>
